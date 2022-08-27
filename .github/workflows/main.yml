@@ -1,11 +1,11 @@
-name: Terraform GitHub Actions
+name: Terraform_Install_jenkins_on_AWS
 on:
   pull_request:
     branches:
-     - main
-      workflow_dispatch: 
+      - main
+    workflow_dispatch: 
 env:
-   ROOT_PATH: '${{ github.workspace }}/DevMain'
+   ROOT_PATH: '${{ github.workspace }}/JenkinsInstall'
 
 jobs:
   terraform_plan:
