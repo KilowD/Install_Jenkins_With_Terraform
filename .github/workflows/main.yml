@@ -6,7 +6,6 @@ on:
     workflow_dispatch: 
 env:
    ROOT_PATH: '${{ github.workspace }}/JenkinsInstall'
-
 jobs:
   terraform_plan:
     runs-on: ubuntu-latest
