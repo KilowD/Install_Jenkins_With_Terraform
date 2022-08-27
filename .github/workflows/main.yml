@@ -1,9 +1,12 @@
 name: Terraform_Install_jenkins_on_AWS
 on:
+  push:
+    branches: 
+      - main
   pull_request:
     branches:
       - main
-    workflow_dispatch: 
+   workflow_dispatch: 
 env:
    ROOT_PATH: '${{ github.workspace }}/JenkinsInstall'
 
