@@ -28,22 +28,17 @@ resource "aws_security_group" "ec2_security_group" {
   description = "allow access on ports 8080 and 22"
   vpc_id      = aws_default_vpc.default_vpc.id
 
-  # allow access on port 8080
-  ingress {
-    description = "http proxy access"
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  # Define the ingress rules to allow access on port 8080 and 22
+  dynamic "ingress" {
+    for_each = local.ingress_rules
 
-  # allow access on port 22
-  ingress {
-    description = "ssh access"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    content {
+      description = ingress.value.description
+      from_port   = ingress.value.port
+      to_port     = ingress.value.port
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
   }
 
   egress {
